@@ -1,0 +1,8 @@
+# Chezastemed Student AI Helper
+By Dominic Cheruiyot - Eldoret, Kenya 2026
+
+Serverless RAG tutor for 200 students
+Architecture: S3 -> API Gateway -> Lambda -> Bedrock -> DynamoDB
+
+Cost: $0.50/month (serverless, pay-per-use)
+Sustainability: Lowest carbon, no idle servers
