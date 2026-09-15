@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html><head><meta name="viewport" content="width=device-width"><title>ChezaStemEd AI Tutor</title>
+<style>body{font-family:sans-serif;background:#f0f9ff;padding:20px} .chat{max-width:600px;margin:auto;background:white;padding:20px;border-radius:12px} input{width:80%;padding:10px} button{padding:10px;background:#0ea5e9;color:white;border:none;border-radius:6px}</style></head>
+<body><div class="chat"><h2>🎓 ChezaStemEd AI Tutor</h2><p>For 200 students in Eldoret - Ask me STEM questions!</p><div id="msgs"></div><input id="q" placeholder="e.g. Explain photosynthesis"><button onclick="ask()">Ask</button></div>
+<script>
+async function ask(){
+ let question=document.getElementById('q').value;
+ document.getElementById('msgs').innerHTML+=`<p><b>You:</b> ${question}</p>`;
+ // Replace with your API Gateway URL after you create it
+ const API_URL="https://YOUR_API_ID.execute-api.us-east-1.amazonaws.com/prod/ask";
+ let res=await fetch(API_URL,{method:'POST',body:JSON.stringify({question})});
+ let data=await res.json();
+ document.getElementById('msgs').innerHTML+=`<p><b>Tutor:</b> ${data.answer}</p>`;
+}
+</script></body></html>
