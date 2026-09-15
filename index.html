@@ -1,17 +1,28 @@
-const GEMINI_API_KEY = "AQ.Ab8RN6I8hmCRFnKZWnGI5UIgsvoAtm_qQoFuSXgB4f_sEaupDA"; // your key from aistudio
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+<!DOCTYPE html>
+<html>
+<head><title>ChezaStemEd</title><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<body style="font-family:Arial;padding:20px;background:#f0f8ff;text-align:center">
+<h1>ChezaStemEd is LIVE! 🚀</h1>
+<p>If you see this, site is working!</p>
+<a href="https://aistudio.google.com/app/apikey" target="_blank"><button style="padding:12px;background:blue;color:white;border-radius:8px">Get API Key</button></a>
+<hr>
+<input id="q" style="width:90%;padding:12px" placeholder="Ask e.g. What is photosynthesis?">
+<button onclick="ask()" style="padding:12px;background:green;color:white;width:90%;margin-top:10px">Ask AI</button>
+<div id="a" style="background:white;padding:15px;margin-top:15px;border-radius:8px;text-align:left;white-space:pre-wrap">Answer here...</div>
 
-async function askTutor() {
-  const q = document.getElementById('question').value;
-  document.getElementById('answer').innerText = "Thinking...";
-
-  const response = await fetch(GEMINI_URL, {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({
-      contents: [{parts:[{text: `You are ChezaStemEd AI tutor for 200 students in Eldoret, Kenya. Explain simply, with examples for Kenyan students: ${q}`}]}]
-    })
-  });
-  const data = await response.json();
-  document.getElementById('answer').innerText = data.candidates[0].content.parts[0].text;
+<script>
+const KEY = "PASTE_YOUR_AQ_KEY_HERE"; // replace this after
+async function ask(){
+  const question = document.getElementById('q').value;
+  if(!question){alert("Type question");return;}
+  document.getElementById('a').innerText="Thinking...";
+  const url=`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${KEY}`;
+  try{
+    const r=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{parts:[{text:question}]}]})});
+    const d=await r.json();
+    document.getElementById('a').innerText=d.candidates[0].content.parts[0].text;
+  }catch(e){document.getElementById('a').innerText="Error: "+e+"\nCheck if you pasted key correctly at top of code";}
 }
+</script>
+</body>
+</html>
