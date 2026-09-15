@@ -14,7 +14,7 @@ async function ask(){
   const realKey=localStorage.getItem('k')||document.getElementById('k').value;
   const qq=document.getElementById('q').value; if(!qq){alert("Type question");return;}
   document.getElementById('a').innerText="Thinking...";
-  const url=`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${realKey.trim()}`;
+  const url=`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${realKey.trim()}`;
   try{
     const r=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{parts:[{text:qq}]}]})});
     const d=await r.json();
