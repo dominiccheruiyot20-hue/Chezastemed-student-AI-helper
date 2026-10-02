@@ -24,3 +24,22 @@ async function ask(){
 }
 window.onload=()=>{const s=localStorage.getItem('k'); if(s) document.getElementById('k').placeholder="Key saved *** - you can ask now";}
 </script></body></html>
+<div>
+  <h3>Learn Mode</h3>
+  <textarea id="notes" placeholder="Paste your notes here..."></textarea>
+  <button onclick="makeQuiz()">Make Quiz</button>
+  <div id="quiz"></div>
+</div>
+
+<script>
+async function makeQuiz(){
+  const notes = document.getElementById('notes').value;
+  document.getElementById('quiz').innerHTML = "Generating quiz...";
+  // Replace with your AI API call
+  // For now simple logic:
+  const questions = notes.split('.').slice(0,3).map(s => 
+    `What do you remember about: ${s}? <input><br><br>`
+  ).join('');
+  document.getElementById('quiz').innerHTML = questions;
+}
+</script>
